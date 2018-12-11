@@ -203,7 +203,9 @@ void drawPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], matrixCoords M[PREVIEW
         //drawMatrix(previewL1top, previewL1left, previewSquares, laturaPreview);
         for(i=0;i<PREVIEW_SIZE;i++)
             for(j=0;j<PREVIEW_SIZE;j++){
-                if(L[i][j]==1){
+                //cout<<endl<<"prev i= "<<i<<" j= "<<j<<" x1= "<<M[j][i].x1<<" y1= "<<M[j][i].y1<<endl;
+                //cout<<endl<<"prev i= "<<i<<" j= "<<j<<" x2= "<<M[j][i].x2<<" y2= "<<M[j][i].y2<<endl;
+                if(L[i][j]==1 || L[i][j]==2){
                     //setcolor(color);
                     setfillstyle(SOLID_FILL,color);
                     bar(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
