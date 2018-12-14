@@ -57,7 +57,7 @@ void update();
 bool canMakeMove(int givenX,int givenY,int L[PREVIEW_SIZE][PREVIEW_SIZE],int playerNmb,int opponentNmb);
 void makeMove(int givenX,int givenY,int L[PREVIEW_SIZE][PREVIEW_SIZE],int playerNmb);
 void removePieceFromTable(int playerNmb);
-
+int checkIfGameOver(int L[3][3],int playerNmb,int opponentNmb);
 //OTHER DRAW METHODS
 void drawReadyButton();
 int main(){
@@ -353,6 +353,7 @@ int opponent, player;
             turn++;
             movedL=false;
             drawReadyButton();
+            if(checkIfGameOver(L1,1,2))cout<<"PLAYER 1 WON!\n";
         }
         else{
             cout<<"Player 1 ready button is inactive.\n";
@@ -365,6 +366,7 @@ int opponent, player;
             turn++;
             movedL=false;
             drawReadyButton();
+            if(checkIfGameOver(L2,2,1))cout<<"PLAYER 2 WON!\n";
         }
         else{
             cout<<"Player 2 ready button is inactive.\n";
@@ -419,9 +421,16 @@ int opponent, player;
             }
             else cout<<"can't doo\n";
         }
-    }
-}
+    }}
 
+
+int checkIfGameOver(int L[3][3],int playerNmb,int opponentNmb){
+//0 - not over;  1 - PLAYER 1 WON; 2 - PLAYER 2 WON.
+    int i,j;
+    for(i=0;i<BOARD_SIZE;i++)
+        for(j=0;j<BOARD_SIZE;j++)if(canMakeMove(j,i,L,playerNmb,opponentNmb))return 0;
+    return playerNmb;
+}
 
 void loadTable(){
     int n;
