@@ -2,6 +2,7 @@
 #include <winbgim.h>
 #include <stdlib.h>
 #include <fstream>
+#include <cstring>
 
 #define BOARD_SIZE 6
 #define BOARD_COORDS_SIZE 4
@@ -27,15 +28,16 @@ int BOARD[BOARD_SIZE][BOARD_SIZE],latura;
 int boardTop, boardLeft, boardWidth, boardHeight, boardLatura, boardSquares=4, boardLine, boardColumn;
 matrixCoords boardCoords[BOARD_COORDS_SIZE][BOARD_COORDS_SIZE];
 //PREVIEWS GLOBAL VARS
-int L1[PREVIEW_SIZE][PREVIEW_SIZE]={0,1,0,0,1,0,0,1,1},L2[PREVIEW_SIZE][PREVIEW_SIZE]={2,2,0,0,2,0,0,2,0};
+int L1[PREVIEW_SIZE][PREVIEW_SIZE],L2[PREVIEW_SIZE][PREVIEW_SIZE];
 int previewL1top,previewL1left,previewL2top,previewL2left;
 int previewSquares=3, laturaPreview;
 matrixCoords previewCoordsL1[PREVIEW_SIZE][PREVIEW_SIZE], previewCoordsL2[PREVIEW_SIZE][PREVIEW_SIZE];
 
-int turn;
-bool gata;
+int turn, midx, midy;
+bool gata,gameOver=false;
 bool pickedNeutralPiece=false,movedL=false;
 
+void initiate();
 void initiateCanvas(int width, int height, int squares);
 //BOARD FUNCTIONS
 void loadTable();
@@ -45,8 +47,10 @@ void drawBoardMatrix(int B[BOARD_SIZE][BOARD_SIZE], matrixCoords M[BOARD_COORDS_
 //PREVIEW FUNCTIONS
 void printL();
 void rotatePreviewMatrixClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
+void rotatePreviewLClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE]);
 void rotatePreviewMatrixCounterClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
 void cyclicPreviewInterchange(int &a, int &b, int &c, int &d);
+void flipPreviewL(int L[PREVIEW_SIZE][PREVIEW_SIZE]);
 void flipPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
 void generateCoordsForPreviewMatrix(matrixCoords M[PREVIEW_SIZE][PREVIEW_SIZE], int squares, int top, int left, int latura);
 void drawPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], matrixCoords M[PREVIEW_SIZE][PREVIEW_SIZE],int color);
@@ -62,10 +66,8 @@ int checkIfGameOver(int L[3][3],int playerNmb,int opponentNmb);
 void drawReadyButton();
 int main(){
     int x = getmaxwidth(), y=getmaxheight();
-    loadTable();
     initwindow(x-80,y);
-    initiateCanvas(400,400,boardSquares);
-    printMatrix(L1,3);
+    initiate();
 
     //left click mouse handler
     registermousehandler(WM_LBUTTONDOWN, click_handler);
@@ -81,6 +83,14 @@ int main(){
     return 0;
 }
 
+void initiate(){
+    midx = getmaxx() / 2;
+    midy = getmaxy() / 2;
+    turn = 0;
+    loadTable();
+    initiateCanvas(400,400,boardSquares);
+    printMatrix(L1,3);
+}
 
 void initiateCanvas(int width, int height, int squares){
     cout<<"Initializing canvas...\n";
@@ -111,6 +121,7 @@ void initiateCanvas(int width, int height, int squares){
     printB();cout<<endl<<endl;
     drawPreviewMatrix(L2,previewCoordsL2,P2_COLOR);
     //loadTable();
+
     drawReadyButton();
 }
 
@@ -233,12 +244,14 @@ void drawPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], matrixCoords M[PREVIEW
 void drawReadyButton(){
     //make the button red if the L piece is not moved
     if(turn%2==0){
-    readimagefile("ready_btn_active.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66);
+        if(movedL==true)readimagefile("ready_btn_active.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66);
+        else if(movedL==false) readimagefile("ready_btn_waiting_move.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66);
     readimagefile("ready_btn_inactive.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
     }
     else{
 
-   readimagefile("ready_btn_active.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
+    if(movedL)readimagefile("ready_btn_active.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
+    else readimagefile("ready_btn_waiting_move.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
     readimagefile("ready_btn_inactive.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66);
     }
 }
@@ -283,7 +296,12 @@ void update(){
         case 'x':
         gata=true;
         break;
+        case ' ':
+        if(gameOver){
+            gameOver = false;
+            initiate();
 
+        }
     }
     printMatrix(L1,3);
     //cand e finalizata mutarea punem turn++;
@@ -305,19 +323,22 @@ void printL(){
 bool canMakeMove(int givenX,int givenY,int L[3][3],int playerNmb,int opponentNmb){
     int i, j, samePosEncountered=0;
     int iBoard = givenY+1, jBoard = givenX + 1, nBoard = givenX + 2;
-   // cout<<iBoard<<" ... "<<BOARD_SIZE-2;
-   cout<<endl<<"iBoard= "<<iBoard<<" jboard= "<<jBoard<<endl;
-    if(iBoard<1 || jBoard<1 || iBoard>BOARD_SIZE-2 ||jBoard>BOARD_SIZE-2){cout<<"case1"; return false;}
+
+   //cout<<endl<<"iBoard= "<<iBoard<<" jboard= "<<jBoard<<endl;
+    if(iBoard<1 || jBoard<1 || iBoard>BOARD_SIZE-2 ||jBoard>BOARD_SIZE-2){
+        //cout<<"case1";
+        return false;}
     iBoard = givenY; jBoard = givenX;
-    printB();
+    //printB();
     for(i=0; i<3; i++, iBoard++){
         for(j=0, jBoard = givenX ; j<3 && jBoard<=nBoard; j++, jBoard++){
             if(  (BOARD[iBoard][jBoard]==BORDER
                 ||BOARD[iBoard][jBoard]==NEUTRAL_PIECE
                 ||BOARD[iBoard][jBoard]==opponentNmb) && L[i][j]==playerNmb){
-                    cout<<endl<<"iBoard= "<<iBoard<<" jboard= "<<jBoard<<endl;
-                    cout<<endl<<"i= "<<i<<" j= "<<j<<endl;
-                    cout<<BOARD[iBoard][jBoard]<<" "<<"case2\n"; return false;}
+                    //cout<<endl<<"iBoard= "<<iBoard<<" jboard= "<<jBoard<<endl;
+                    //cout<<endl<<"i= "<<i<<" j= "<<j<<endl;
+                    //cout<<BOARD[iBoard][jBoard]<<" "<<"case2\n";
+                    return false;}
             if(BOARD[iBoard][jBoard]==playerNmb && L[i][j]==playerNmb){
                 samePosEncountered++;
                 if(samePosEncountered==4) {cout<<"case3"; return false;}}
@@ -353,7 +374,7 @@ int opponent, player;
             turn++;
             movedL=false;
             drawReadyButton();
-            if(checkIfGameOver(L1,1,2))cout<<"PLAYER 1 WON!\n";
+            if(checkIfGameOver(L2,1,2)){cout<<"PLAYER 1 WON!\n";outtextxy(midx-100, midy, "Player1 won. Press SPACE to play again.");}
         }
         else{
             cout<<"Player 1 ready button is inactive.\n";
@@ -366,7 +387,7 @@ int opponent, player;
             turn++;
             movedL=false;
             drawReadyButton();
-            if(checkIfGameOver(L2,2,1))cout<<"PLAYER 2 WON!\n";
+            if(checkIfGameOver(L1,2,1)){cout<<"PLAYER 2 WON!\n";outtextxy(midx-100, midy, "Player2 won. Press SPACE to play again.");}
         }
         else{
             cout<<"Player 2 ready button is inactive.\n";
@@ -396,9 +417,11 @@ int opponent, player;
             }
             else if(!movedL && canMakeMove(boardColumn,boardLine,L1,1,2)){
                 cout<<"caaan doo\n";
+                movedL=true;
                 makeMove(boardColumn,boardLine,L1,1);
                 drawBoardMatrix(BOARD,boardCoords);
-                movedL=true;
+                drawReadyButton();
+
                 //turn++;
             }
 
@@ -413,31 +436,87 @@ int opponent, player;
 
             else if(!movedL && canMakeMove(boardColumn,boardLine,L2,2,1)){
                 cout<<"caaan doo\n";
-                makeMove(boardColumn,boardLine,L2,2);
-                printB();
-                drawBoardMatrix(BOARD,boardCoords);
                 movedL=true;
+                makeMove(boardColumn,boardLine,L2,2);
+                //printB();
+                drawBoardMatrix(BOARD,boardCoords);
+                drawReadyButton();
+
                 //turn++;
             }
             else cout<<"can't doo\n";
         }
     }}
 
-
+/*
 int checkIfGameOver(int L[3][3],int playerNmb,int opponentNmb){
 //0 - not over;  1 - PLAYER 1 WON; 2 - PLAYER 2 WON.
-    int i,j;
+    int i,j,k;
     for(i=0;i<BOARD_SIZE;i++)
-        for(j=0;j<BOARD_SIZE;j++)if(canMakeMove(j,i,L,playerNmb,opponentNmb))return 0;
+        for(j=0;j<BOARD_SIZE;j++){
+            for(k=0;k<4;k++){
+                if(canMakeMove(j,i,L,playerNmb,opponentNmb))return 0;
+                flipPreviewL(L);
+                if(canMakeMove(j,i,L,playerNmb,opponentNmb))return 0;
+                flipPreviewL(L);
+                rotatePreviewLClockwise(L);
+                printL();cout<<endl;
+        }
+
+
+}
+return playerNmb;
+}
+*/
+int checkIfGameOver(int L[3][3],int playerNmb,int opponentNmb){
+//0 - not over;  1 - PLAYER 1 WON; 2 - PLAYER 2 WON.
+    int i,j,k,midx,midy;
+    for(k=0;k<4;k++){
+        for(i=0;i<BOARD_SIZE;i++)
+            for(j=0;j<BOARD_SIZE;j++)
+                //checks if opponent can make any moves
+                if(canMakeMove(j,i,L,opponentNmb,playerNmb))return 0;
+        flipPreviewL(L);
+        for(i=0;i<BOARD_SIZE;i++)
+            for(j=0;j<BOARD_SIZE;j++)
+                if(canMakeMove(j,i,L,opponentNmb,playerNmb))return 0;
+        flipPreviewL(L);
+        rotatePreviewLClockwise(L);
+        printL();cout<<endl;
+        }
+    gameOver=true;
+
+    //display winner message
+    clearviewport();
+
+
     return playerNmb;
 }
+void rotatePreviewLClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE]){
+    int n=PREVIEW_SIZE;
+    for(int i=0; i<n/2; i++)
+       for(int j=0; j<(n+1)/2; j++)
+           cyclicPreviewInterchange(L[i][j], L[n-1-j][i], L[n-1-i][n-1-j], L[j][n-1-i]);
 
+}
+
+void flipPreviewL(int L[PREVIEW_SIZE][PREVIEW_SIZE]){
+    for(int i=0,aux; i<PREVIEW_SIZE; i++) {
+            aux = L[i][0];
+            L[i][0] = L[i][PREVIEW_SIZE-1];
+            L[i][PREVIEW_SIZE-1] = aux;
+        }
+}
 void loadTable(){
     int n;
     ifstream f("start_table.in");
     f>>n;
     for(int i=0;i<n;i++)
         for(int j=0;j<n;j++)f>>BOARD[i][j];
+    for(int i=0;i<PREVIEW_SIZE;i++)
+        for(int j=0;j<PREVIEW_SIZE;j++)f>>L1[i][j];
+    for(int i=0;i<PREVIEW_SIZE;i++)
+        for(int j=0;j<PREVIEW_SIZE;j++)f>>L2[i][j];
     f.close();
 }
 
