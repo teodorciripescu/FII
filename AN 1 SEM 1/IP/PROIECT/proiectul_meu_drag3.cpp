@@ -49,12 +49,12 @@ void generateCoordsForMatrix(matrixCoords M[BOARD_COORDS_SIZE][BOARD_COORDS_SIZE
 void drawBoardMatrix(int B[BOARD_SIZE][BOARD_SIZE], matrixCoords M[BOARD_COORDS_SIZE][BOARD_COORDS_SIZE]);
 //PREVIEW FUNCTIONS
 void printL();
-void rotatePreviewMatrixClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
+void rotatePreviewMatrixClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color,bool draw);
 void rotatePreviewLClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE]);
 void rotatePreviewMatrixCounterClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
 void cyclicPreviewInterchange(int &a, int &b, int &c, int &d);
 void flipPreviewL(int L[PREVIEW_SIZE][PREVIEW_SIZE]);
-void flipPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color);
+void flipPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color,bool draw);
 void generateCoordsForPreviewMatrix(matrixCoords M[PREVIEW_SIZE][PREVIEW_SIZE], int squares, int top, int left, int latura);
 void drawPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], matrixCoords M[PREVIEW_SIZE][PREVIEW_SIZE],int color);
 void printMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], int n);
@@ -178,15 +178,15 @@ void cyclicPreviewInterchange(int &a, int &b, int &c, int &d){
    c = d;
    d = aux;
 }
-void rotatePreviewMatrixClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color){
+void rotatePreviewMatrixClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color,bool draw){
     int n=PREVIEW_SIZE;
     for(int i=0; i<n/2; i++)
        for(int j=0; j<(n+1)/2; j++)
            cyclicPreviewInterchange(L[i][j], L[n-1-j][i], L[n-1-i][n-1-j], L[j][n-1-i]);
-           cout<<endl;
-           printMatrix(L,3);
-           cout<<endl;
-    drawPreviewMatrix(L,coordsL,color);
+           //cout<<endl;
+           //printMatrix(L,3);
+           //cout<<endl;
+    if(draw)drawPreviewMatrix(L,coordsL,color);
 
 }
 void rotatePreviewMatrixCounterClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color){
@@ -196,13 +196,13 @@ void rotatePreviewMatrixCounterClockwise(int L[PREVIEW_SIZE][PREVIEW_SIZE],matri
            cyclicPreviewInterchange(L[j][n-1-i], L[n-1-i][n-1-j], L[n-1-j][i], L[i][j]);
     drawPreviewMatrix(L,coordsL,color);
 }
-void flipPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color){
+void flipPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE],matrixCoords coordsL[PREVIEW_SIZE][PREVIEW_SIZE],int color,bool draw){
     for(int i=0,aux; i<PREVIEW_SIZE; i++) {
         aux = L[i][0];
         L[i][0] = L[i][PREVIEW_SIZE-1];
         L[i][PREVIEW_SIZE-1] = aux;
     }
-    drawPreviewMatrix(L,coordsL,color);
+    if(draw)drawPreviewMatrix(L,coordsL,color);
 }
 void printMatrix(int L[3][3], int n){
     for(int i=0;i<n;i++){
@@ -288,7 +288,7 @@ void update(){
         //PLAYER 1 INPUT
         case 'w':
         case 'W':
-        flipPreviewMatrix(L1,previewCoordsL1,P1_COLOR);
+        flipPreviewMatrix(L1,previewCoordsL1,P1_COLOR,true);
         break;
         case 'a':
         case 'A':
@@ -296,25 +296,25 @@ void update(){
         break;
         case 's':
         case 'S':
-        flipPreviewMatrix(L1,previewCoordsL1,P1_COLOR);
+        flipPreviewMatrix(L1,previewCoordsL1,P1_COLOR,true);
         break;
         case 'd':
         case 'D':
-        rotatePreviewMatrixClockwise(L1,previewCoordsL1,P1_COLOR);
+        rotatePreviewMatrixClockwise(L1,previewCoordsL1,P1_COLOR,true);
         break;
 
         //PLAYER 2 INPUT
         case KEY_UP:
-        flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR);
+        flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,true);
         break;
         case KEY_LEFT:
         rotatePreviewMatrixCounterClockwise(L2,previewCoordsL2,P2_COLOR);
         break;
         case KEY_DOWN:
-        flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR);
+        flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,true);
         break;
         case KEY_RIGHT:
-        rotatePreviewMatrixClockwise(L2,previewCoordsL2,P2_COLOR);
+        rotatePreviewMatrixClockwise(L2,previewCoordsL2,P2_COLOR,true);
         break;
         case 'x':
         gata=true;
@@ -327,7 +327,6 @@ void update(){
         }
     }
     printMatrix(L1,3);
-    //cand e finalizata mutarea punem turn++;
 
 }
 void printB(){
@@ -434,7 +433,28 @@ void click_handler_startScreen(int x, int y){
 void click_handler_1player(int x, int y){
 
 }
+int generateRandomNumber(int maxNmb){
+    /* initialize random seed: */
+  //srand (time(NULL));
+  /* generate secret number between 1 and 10: */
+  return rand() % (maxNmb+1);
+  }
+bool compMadeMove=false;
+int compX,compY,compRotateCounter,compCanMakeMove,compPossibleMoves[4][4],nmbOfPossMoves;
 
+int createCompPossibleMovesMatrix(){
+    int i,j,possibleMoves=0;
+    for(i=1;i<=4;i++)
+        for(j=1;j<=4;j++){
+                if(BOARD[i][j]==0){compPossibleMoves[i-1][j-1]=1;possibleMoves++;}
+                else if(BOARD[i][j]==2 && canMakeMove(j-1,i-1,L2,2,1)){
+                        compPossibleMoves[i-1][j-1]=1;
+                        possibleMoves++;
+                        }
+        }
+    compPossibleMoves[0][0]=compPossibleMoves[0][3]=compPossibleMoves[3][0]=compPossibleMoves[3][3]=0;
+    return possibleMoves;
+}
 void click_handler_2players(int x, int y){
 int opponent, player;
     //ready button click events
@@ -442,30 +462,94 @@ int opponent, player;
         cout<<"Player 1 ready button clicked.\n";
         if(turn%2==0 && movedL==true && pickedNeutralPiece==false){
             cout<<"Player 1 ready button is active.\n";
-            turn++;
-            movedL=false;
-            drawReadyButton();
-            if(checkIfGameOver(L2,1,2)){cout<<"PLAYER 1 WON!\n";outtextxy(midx-100, midy, "Player1 won. Press SPACE to play again.");
 
+
+            if(checkIfGameOver(L2,1,2)){cout<<"PLAYER 1 WON!\n";outtextxy(midx-100, midy, "Player1 won. Press SPACE to play again.");}
+                else{
+                    int compI;
+                    compMadeMove=false;
+                    while(!compMadeMove){
+                        //randomly decide how many times the piece will be rotated (0 - 3)
+                        compRotateCounter = generateRandomNumber(3);
+                        for(compI=0;compI<=compRotateCounter;compI++){
+                            rotatePreviewMatrixClockwise(L2,previewCoordsL2,P2_COLOR,false);
+                        }
+                        /*
+                        //randomly decide if the piece will be flipped
+                        if(generateRandomNumber(1)){
+                            flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,false);
+                        }
+                        */
+                        nmbOfPossMoves = createCompPossibleMovesMatrix();
+                        do{
+                            compX = generateRandomNumber(3);
+                            compY = generateRandomNumber(3);
+                            cout<<"back at it";
+                            if(compPossibleMoves[compX][compY]){
+                                    cout<<endl<<"compX="<<compX<<" compY="<<compY<<endl;
+                                compCanMakeMove = canMakeMove(compY,compX,L2,2,1);
+                                //if(!compCanMakeMove) flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,false);
+                                //compCanMakeMove = canMakeMove(compY,compX,L2,2,1);
+                                if(compCanMakeMove){
+                                    makeMove(compY,compX,L2,2);
+                                    compMadeMove=true;
+                                    movedL=true;
+                                    drawReadyButton();
+                                    drawBoardMatrix(BOARD,boardCoords);
+                                    //randomly move neutral pieces
+
+                                    drawReadyButton();
+
+                                }
+                                else{
+                                    compPossibleMoves[compX][compY]=0;
+                                    nmbOfPossMoves--;
+                                    if(nmbOfPossMoves==0)break;
+                                }
+                            }
+                        }while(compPossibleMoves[compX][compY]==0);
+                        //flip
+
+                        if(!compMadeMove){
+                        flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,false);
+                        nmbOfPossMoves = createCompPossibleMovesMatrix();
+                        do{
+                            compX = generateRandomNumber(3);
+                            compY = generateRandomNumber(3);
+
+                            if(compPossibleMoves[compX][compY]){
+                                    cout<<endl<<"compX="<<compX<<" compY="<<compY<<endl;
+                                compCanMakeMove = canMakeMove(compY,compX,L2,2,1);
+                                //if(!compCanMakeMove) flipPreviewMatrix(L2,previewCoordsL2,P2_COLOR,false);
+                                //compCanMakeMove = canMakeMove(compY,compX,L2,2,1);
+                                if(compCanMakeMove){
+                                    makeMove(compY,compX,L2,2);
+                                    compMadeMove=true;
+                                    //movedL=true;
+
+
+                                }
+                                else{
+                                    compPossibleMoves[compX][compY]=0;
+                                    nmbOfPossMoves--;
+                                    if(nmbOfPossMoves==0)break;
+                                }
+                            }
+                        }while(compPossibleMoves[compX][compY]==0);
+                        }
+                    }
+                }
+                movedL=false;
+            drawBoardMatrix(BOARD,boardCoords);
+            drawReadyButton();
             }
-        }
-        else{
+            else{
             cout<<"Player 1 ready button is inactive.\n";
         }
-    }
-    else if(x>=previewL2top && x<=previewL2top+186 && y>=getmaxy()-latura && y<=getmaxy()-latura+66){
-        cout<<"Player 2 ready button clicked.\n";
-        if(turn%2==1 && movedL==true && pickedNeutralPiece==false){
-            cout<<"Player 2 ready button is active.\n";
-            turn++;
-            movedL=false;
-            drawReadyButton();
-            if(checkIfGameOver(L1,2,1)){cout<<"PLAYER 2 WON!\n";outtextxy(midx-100, midy, "Player2 won. Press SPACE to play again.");}
+
+
         }
-        else{
-            cout<<"Player 2 ready button is inactive.\n";
-        }
-    }
+
     else
     if (x>=boardTop && x<=boardTop+boardWidth && y>=boardLeft&&y<=boardLeft+boardHeight){
         boardColumn=(x-boardTop)/boardLatura; boardLine=(y-boardLeft)/boardLatura;
@@ -483,7 +567,7 @@ int opponent, player;
                 drawBoardMatrix(BOARD,boardCoords);
             }
        if(turn%2==0){
-            if(movedL && BOARD[boardLine+1][boardColumn+1]==P1_PIECE && !pickedNeutralPiece){
+            if(movedL && BOARD[boardLine+1][boardColumn+1]==P1_PIECE){
                 removePieceFromTable(P1_PIECE);
                 drawBoardMatrix(BOARD,boardCoords);
                 movedL=false;
@@ -495,28 +579,9 @@ int opponent, player;
                 drawBoardMatrix(BOARD,boardCoords);
                 drawReadyButton();
 
-                //turn++;
+
             }
 
-            else cout<<"can't doo\n";
-        }
-        else{
-            if(movedL && BOARD[boardLine+1][boardColumn+1]==P2_PIECE && !pickedNeutralPiece){
-                removePieceFromTable(P2_PIECE);
-                drawBoardMatrix(BOARD,boardCoords);
-                movedL=false;
-            }
-
-            else if(!movedL && canMakeMove(boardColumn,boardLine,L2,2,1)){
-                cout<<"caaan doo\n";
-                movedL=true;
-                makeMove(boardColumn,boardLine,L2,2);
-                //printB();
-                drawBoardMatrix(BOARD,boardCoords);
-                drawReadyButton();
-
-                //turn++;
-            }
             else cout<<"can't doo\n";
         }
     }
