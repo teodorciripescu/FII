@@ -75,13 +75,13 @@ void randomMoveNeutralPieces();
 void compMove();
 //OTHER DRAW METHODS
 void drawReadyButton();
-void drawMatrix(int top, int left, int squares, int latura);
 
 int main(){
     int x = getmaxwidth(), y=getmaxheight();
     initwindow(x-80,y);
     cout<<x-80<<" "<<y;
     initiateStartScreen();
+    //initiate_2players();
 
     gata=false;
        do
@@ -113,12 +113,16 @@ void initiate_1player(){
     midx = getmaxx() / 2;
     midy = getmaxy() / 2;
     turn = 0;
-    loadTable();
-    initiateCanvas(400,400,boardSquares);
+    int x=getmaxx(),y=getmaxy(),i,j;
+    for(i=0;i<=x;i+=180){
+        for(j=0;j<=y;j+=180) readimagefile("images/background.jpg",i,j,i+180,j+180);
+    }
+    //loadTable();
+    //initiateCanvas(400,400,boardSquares);
     gamemode=0;
     //left click mouse handler
-    registermousehandler(WM_LBUTTONDOWN, click_handler_1player);
-    srand (time(NULL));
+   //// registermousehandler(WM_LBUTTONDOWN, click_handler_1player);
+   // srand (time(NULL));
 }
 void initiate_2players(){
     midx = getmaxx() / 2;
@@ -133,16 +137,12 @@ void initiate_2players(){
 
 void initiateCanvas(int width, int height, int squares){
     cout<<"Initializing canvas...\n";
-    int top, left,i,j,x=getmaxx(),y=getmaxy();
+    int top, left,i;
     top = (getmaxx() - width) / 2;
     left =  (getmaxy() - height) / 2;
     cout<<"Drawing matrix from "<<top<<" (top), "<<left<<" (left).\n";
     setbkcolor(BACKGROUND);
-        clearviewport();
-    for(i=0;i<=x;i+=180){
-        for(j=0;j<=y;j+=180) readimagefile("images/background2.jpg",i,j,i+180,j+180);
-    }
-
+    clearviewport();
     latura = width/squares;
     setcolor(OUTLINE);
     boardTop = top; boardLeft = left; boardWidth = width; boardHeight = height; boardLatura = latura;
@@ -154,16 +154,15 @@ void initiateCanvas(int width, int height, int squares){
     laturaPreview=latura/2;
     top/=squares;
     previewL1top=top;previewL1left=left;
-    //L2 preview
-    top = getmaxx() - laturaPreview*(previewSquares+3);
-    previewL2top=top;previewL2left=left;
-
     generateCoordsForPreviewMatrix(previewCoordsL1, previewSquares, previewL1top, previewL1left, laturaPreview);
     drawPreviewMatrix(L1,previewCoordsL1,P1_COLOR);
 
+    top = getmaxx() - laturaPreview*(previewSquares+3);
+    previewL2top=top;previewL2left=left;
+    printB();cout<<endl<<endl;
     generateCoordsForPreviewMatrix(previewCoordsL2, previewSquares, previewL2top, previewL2left, laturaPreview);
+    printB();cout<<endl<<endl;
     drawPreviewMatrix(L2,previewCoordsL2,P2_COLOR);
-
     //loadTable();
 
     drawReadyButton();
@@ -233,58 +232,59 @@ void printMatrix(int L[3][3], int n){
     cout<<endl;
 }
 
-void drawMatrix(int top, int left, int squares, int latura){
-    int i;
-    for(i=0;i<squares+1;i++){
-        //linii verticale
-        line(top+i*latura, left, top + i*latura, left + latura * squares);
-        //linii orizontale
-        line(top, left + i*latura, top + latura * squares, left + i*latura);
-    }
 
-}
 void drawBoardMatrix(int B[BOARD_SIZE][BOARD_SIZE], matrixCoords M[BOARD_COORDS_SIZE][BOARD_COORDS_SIZE]){
     int i,j,iB,jB;
-    int c , x = boardTop, y = boardLeft-3;
-    setcolor(BLACK);
-
-    setlinestyle(0, 0, 6);
-
-    line(x, y, x+400, y);
-    line(x-3, y, x-3, y+400);
-    line(x+403,y,x+403,y+400);
-    line(x-3,y+406,x+403,y+406);
-
     for(iB=1;iB<BOARD_SIZE-1;iB++)
             for(jB=1;jB<BOARD_SIZE-1;jB++){
                 i=iB-1; j=jB-1;
-                if(B[iB][jB]==1)
+                if(B[iB][jB]==1){
+                    //setcolor(P1_COLOR);
+                    setfillstyle(SOLID_FILL,P1_COLOR);
                     readimagefile("images/lava.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-                else if(B[iB][jB]==2)
+                    //bar(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                }
+                else if(B[iB][jB]==2){
+                    //setcolor(P2_COLOR);
+                    setfillstyle(SOLID_FILL,P2_COLOR);
                     readimagefile("images/ice2.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-
-                else if(B[iB][jB]==3)
+                    //bar(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                }
+                else if(B[iB][jB]==3){
+                    //setcolor(OUTLINE);
+                    setfillstyle(SOLID_FILL,NEUTRAL_COLOR);
                     readimagefile("images/neutral.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-
-                else if(B[iB][jB]==0)
+                    //bar3d(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2,0,0);
+                }
+                else if(B[iB][jB]==0){
+                    //setcolor(OUTLINE);
+                    setfillstyle(SOLID_FILL,BACKGROUND);
                     readimagefile("images/floor4.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-
+                    //bar3d(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2,0,0);
+                }
         }
-    setlinestyle(0, 0, 1);
-    drawMatrix(boardTop,boardLeft,4,latura);
+  //      int *buf[4];
+//        getimage("ready_btn_active.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66,buf);
+
 }
 void drawPreviewMatrix(int L[PREVIEW_SIZE][PREVIEW_SIZE], matrixCoords M[PREVIEW_SIZE][PREVIEW_SIZE],int color){
     int i,j;
-    for(i=0;i<PREVIEW_SIZE;i++)
-        for(j=0;j<PREVIEW_SIZE;j++){
-            if(L[i][j]==1)readimagefile("images/lava_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-            else if(L[i][j]==2) readimagefile("images/ice2_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-            else if(L[i][j]==0)readimagefile("images/floor4_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
-    }
-    drawMatrix(previewL1top,previewL1left,3,laturaPreview);
-    drawMatrix(previewL2top,previewL2left,3,laturaPreview);
-}
 
+        //drawMatrix(previewL1top, previewL1left, previewSquares, laturaPreview);
+        for(i=0;i<PREVIEW_SIZE;i++)
+            for(j=0;j<PREVIEW_SIZE;j++){
+                if(L[i][j]==1)readimagefile("images/lava_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                else if(L[i][j]==2) readimagefile("images/ice2_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                    //bar(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                else if(L[i][j]==0){
+                    //setcolor(OUTLINE);
+                    //setfillstyle(SOLID_FILL,BACKGROUND);
+                    //bar3d(M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2,0,0);
+                    readimagefile("images/floor4_small.jpg",M[j][i].x1,M[j][i].y1,M[j][i].x2,M[j][i].y2);
+                }
+        }
+
+}
 void drawReadyButton(){
     //make the button red if the L piece is not moved
     if(turn%2==0){
@@ -293,6 +293,7 @@ void drawReadyButton(){
     readimagefile("ready_btn_inactive.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
     }
     else{
+
     if(movedL)readimagefile("ready_btn_active.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
     else readimagefile("ready_btn_waiting_move.jpg",previewL2top,getmaxy()-latura,previewL2top+186,getmaxy()-latura+66);
     readimagefile("ready_btn_inactive.jpg",previewL1top,getmaxy()-latura,previewL1top+186,getmaxy()-latura+66);
@@ -429,21 +430,18 @@ void mouse_hover_handler_startScreen(int x, int y){
     }
 }
 void click_handler_startScreen(int x, int y){
-    //BUTTON SINGLEPLAYER
     if(x>=startScreenTop && x<=startScreenTop+450 && y>=startScreenLeft && y<=startScreenLeft+100){
         registermousehandler(WM_MOUSEMOVE, NULL);
         registermousehandler(WM_LBUTTONDOWN, NULL);
         clearviewport();
         initiate_1player();
     }
-    //BUTTON MULTIPLAYER
     else if(x>=startScreenTop && x<=startScreenTop+450 && y>=startScreenLeft+150 && y<=startScreenLeft+100+150){
         registermousehandler(WM_MOUSEMOVE, NULL);
         registermousehandler(WM_LBUTTONDOWN, NULL);
         clearviewport();
         initiate_2players();
     }
-    //BUTTON EXIT
     else if(x>=startScreenTop && x<=startScreenTop+450 && y>=startScreenLeft+300 && y<=startScreenLeft+100+300){
         exit(0);
     }
@@ -712,6 +710,7 @@ void loadTable(){
         for(int j=0;j<PREVIEW_SIZE;j++)f>>L2[i][j];
     f.close();
 }
+
 
 
 
