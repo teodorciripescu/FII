@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmmmc", "cmmmc\cmmmc.vcxproj", "{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Debug|x64.ActiveCfg = Debug|x64
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Debug|x64.Build.0 = Debug|x64
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Debug|x86.ActiveCfg = Debug|Win32
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Debug|x86.Build.0 = Debug|Win32
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Release|x64.ActiveCfg = Release|x64
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Release|x64.Build.0 = Release|x64
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Release|x86.ActiveCfg = Release|Win32
+		{97ACBC9F-0001-4FF2-A026-1E0EFB5E126E}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C85756D-354D-4DD6-BDD3-B1867FFFC62A}
+	EndGlobalSection
+EndGlobal

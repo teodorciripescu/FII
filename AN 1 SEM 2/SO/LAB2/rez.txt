@@ -1,0 +1,13 @@
+1.
+1. Sa se scrie comanda care sa parcurga recursiv directorul dat ca argument ?i sa afi?eze permisiunile tuturor fi?ierelor ?i subdirectoarelor întâlnite. 
+(Indica?ie: folosi?i comanda find ?i cu ac?iunea de apelare a comenzii stat, sau ac?iunea echivalenta de afi?are cu format.)
+find . -printf "%m       %p\n"
+2. Sa se scrie comanda ce afi?eaza pentru toate fi?ierele gasite în directorul dat ca argument în linia de comanda, parcurs recursiv, fi?iere ale caror nume încep sau se termina cu litera 'a', urmatoarele proprieta?i: numele fi?ierului, data ultimei modificari ?i dimensiunea fi?ierului în Kbytes. 
+(Indica?ie: folosi?i comanda find ?i cu op?iunea de combinare alternativa a mai multor criterii de cautare dupa nume, iar la partea de ac?iuni cu op?iunea -printf cu parametrii adecva?i.)
+find . -name "a*"  -printf "%m   %t   %k   %p\n" -or -name "*a" -printf "%m   %t   %k   %p\n"
+3. Sa se scrie comanda care sa sorteze descrescator liniile de text din fi?ierul /etc/passwd, iar rezultatul sortarii sa fie salvat în fi?ierul output.txt. 
+(Indica?ie: folosi?i comanda sort cu cele doua op?iuni corespunzatoare cerin?elor din enun?.)
+sort -r -o output.txt /etc/passwd
+4. Sa se scrie comanda care sa sorteze crescator dupa UID liniile de text din fi?ierul /etc/passwd. 
+(Indica?ie: folosi?i comanda sort cu trei op?iuni: op?iunea pentru sortare numerica, op?iunea pentru sortare dupa cheia câmpul 3 ?i op?iunea pentru stabilirea separatorului dintre câmpuri.)
+sort -n -k 3 --field-separator=":" -o output.txt /etc/passwd

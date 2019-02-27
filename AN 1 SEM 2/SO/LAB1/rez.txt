@@ -1,0 +1,6 @@
+1.
+cut /etc/passwd -d ':' -f 1,3
+2.
+cat /etc/passwd | grep nume
+3.
+cut /etc/group -d ':' -f 1,3 --output -delimiter='-'  

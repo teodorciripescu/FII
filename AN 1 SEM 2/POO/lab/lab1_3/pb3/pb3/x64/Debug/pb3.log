@@ -1,0 +1,3 @@
+﻿  Source.cpp
+c:\users\teodo\documents\github\fii\an 1 sem 2\poo\lab\lab1_3\pb3\pb3\source.cpp(12): error C2664: 'char *strcat(char *,const char *)': cannot convert argument 2 from 'char' to 'const char *'
+  c:\users\teodo\documents\github\fii\an 1 sem 2\poo\lab\lab1_3\pb3\pb3\source.cpp(12): note: Conversion from integral type to pointer type requires reinterpret_cast, C-style cast or function-style cast

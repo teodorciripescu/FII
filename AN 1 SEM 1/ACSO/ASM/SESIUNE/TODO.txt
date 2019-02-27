@@ -1,0 +1,3 @@
+cmmdc cmmmc
+aria
+sortare vector
