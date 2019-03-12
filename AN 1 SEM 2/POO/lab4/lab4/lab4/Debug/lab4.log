@@ -1,0 +1,5 @@
+﻿  BinaryTree.cpp
+c:\users\teodo\documents\github\fii\an 1 sem 2\poo\lab4\lab4\lab4\binarytree.cpp(135): warning C4101: 'b': unreferenced local variable
+c:\users\teodo\documents\github\fii\an 1 sem 2\poo\lab4\lab4\lab4\binarytree.cpp(104): warning C4715: 'BinaryTree::SearchNode': not all control paths return a value
+c:\users\teodo\documents\github\fii\an 1 sem 2\poo\lab4\lab4\lab4\binarytree.cpp(111): warning C4715: 'BinaryTree::GetLeaf': not all control paths return a value
+  lab4.vcxproj -> C:\Users\teodo\Documents\GitHub\FII\AN 1 SEM 2\POO\lab4\lab4\Debug\lab4.exe
