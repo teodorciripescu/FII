@@ -1,0 +1,10 @@
+proces zombie:
+nu mai consuma nimic dar tot ii este alocat timp cpu
+parintele este cel care creaza procesul si el il sterge. el astepata terminarea tuturor proceselor copil si le asteapta pt a le sterge. daca nu, procesul copil devine zombie. parintele trebuie sa moara ultimul.
+daca avem fork, trebuie sa avem si wait.
+kill -l    ---- semnalele
+kill -9 omoara tot
+sigterm e defaultul
+
+fork();
+fork();

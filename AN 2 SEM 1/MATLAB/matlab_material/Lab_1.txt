@@ -1,0 +1,25 @@
+iskeyword
+clc
+clear
+clear all
+home
+input--introducere date
+disp(nume_variabile)--afisare
+zeros(7, 2)--matrice cu 0
+ones(5, 4)--matrice cu 1
+eye(4, 4)--matricea identica (1 pe diagonala principala, 0 in rest)
+A=[ ]--creez un vector
+
+
+
+
+
+
+nume_prenume_MCM3_PL1 --- 24 ore(vineri ora 12:00)
+iacobflorin.fiis@gmail.com
+
+PL1:
+Se da o matrice numerica cu nr. reale, cel putin 5 linii, 7 col. (m,n).
+Se cere evidentierea tuturor per. de linii ingemanate. 
+Vectori ingemanati: U, V 	
+  Suma din(sign(V(k)) * U(k)) de la k=1 la n =! Suma din(sign(U(k)) * V(k)) de la k=1 la n

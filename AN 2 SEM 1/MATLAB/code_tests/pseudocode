@@ -1,0 +1,90 @@
+citeste a,b,c // 10 20 '+'
+a '+' b '=' a + b
+10+20=30 //afisare pe ecran
+
+if(c=='+'){
+    afiseaza ...
+}
+else if(c=='-'){
+
+}
+else if(...){
+    
+}
+if( a == 10){
+    cout<<"a este egal cu 10";
+
+    else
+    if(conditie){
+
+    }
+
+}
+
+
+n = 3;
+(2 + 3 + 6)/3 =...
+k=3;
+repeta
+    citeste nr
+    daca(nr<>0) atunci
+        i<-i+1
+        s<-s+nr
+    k<-k+1
+pana cand (k=n)
+//////////////////////
+Pas 1
+    citeste nr => nr=2
+    daca(nr<>0) => DA, este diferit 
+        i<- i+1 => i=0+1 => i=1
+        s<-s + nr => s = 0 + 2 => s=2
+    k<-k+1 => k=0+1=1
+    Este k=n? NU pt ca 1<>3
+Pas 2
+    ciste nr => nr=3
+    daca(nr<>0) Da, este diferit pt ca nr=3
+        i<-i+1 => i= 1+1 =2
+        s<-s +nr => s=2 +3 =5
+    k<-k+1 => k=1+1=2
+    Este k=n? NU pt ca k =2 si n=3
+Pas 3
+    cite teste nr => nr=6
+    daca ..... DA, este diferit=>
+        i<-i+1 => i=2+1=3
+        s<-s+nr   s=5+6=11
+    k<k+1 => k=2+1=3
+    Este k=n? DA k=3 si n=3 
+    STOP
+///////////////////////
+ma<-(Real)S DIV i;
+11/3
+
+
+
+
+k=0
+citeste nr 
+nr=2
+/////////
+repeta
+    citeste nr 
+    daca(nr mod 2=0 AND nrmod 3=0)
+        atunci k<-k+1
+    i<-i+1
+pana cand (i=n)
+//////////
+
+Pas 1
+    nr=6
+    6%2=0 AND 6%3=0 DA
+        k=0+1=1
+    i<-i+1  i=0+1=1
+    este i=n? NU 1<>2 
+Pas 2 
+    nr=4
+    4%2=0 AND 4%3=0 NU 4%3=1
+    i=2
+    este i=n? DA 2=2
+STOP
+
+afiseaz k => 1

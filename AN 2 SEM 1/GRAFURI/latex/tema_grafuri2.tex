@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage[margin=1in,includefoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb ,amsthm}
+\usepackage[ utf8 ]{ inputenc}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{graphicx}
+\graphicspath{ {\string~/Desktop/} }
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+\pagestyle{fancy}
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+	\line(1,0){200} \\
+	[0.25 in]
+	\huge{\bfseries Tema 2} \\
+	[2mm]
+	\line(1,0){125}\\
+	[1.5cm]
+	\textsc{\LARGE Mocanu Ada-Astrid\\ \& \\Ciripescu Teodor}\\
+	[5mm]
+	Grupa A7\\
+	[10mm]
+	\LARGE 22 Noiembrie 2019\\
+	\end{center}
+\end{titlepage}
+
+
+
+\newpage
+\section*{Problema 1}
+\Large
+a) ADEVARAT\\
+Pentru orice muchie specifica de cost minim,$\exists$ un APM care o contine, deoarece sortarea muchiilor poate fi adaptata asa fel incat sa fie aleasa muchia dorita cu prioritate, fara sa genereze ciclu (de exemplu muchia dorita sa fie prima muchie aleasa).\\
+ \bigskip\\
+ b)FALS\\
+ Contraexemplu:\\
+ Fie circuitul $C=\{ (2,3,4)\} $\\
+ Muchia de cost minim = $(2,3)$\\
+ Ea nu poate fi adaugata in APM deoarece $\exists$ muchiile $(1,2)$ si $(1,3)$, cu cost mai mic decat $(2,3)$, care vor fi adaugate inainte in APM, deci adaugarea lui $(2,3)$ ar genera circuit.\\
+ \includegraphics[width=62mm,scale=1]{1b.jpg}
+ \bigskip\\
+c)ADEVARAT\\
+Fie $T_{G}$ arborele partial de cost minim al lui $G$ si $m$ muchie din APM astfel incat $m \in$ unei anumite taieturi a lui $G$, $M$.\\
+Cum $m\in$ taieturii $\Rightarrow$ eliminarea lui $m$ deconecteaza APM-ul, obtinandu-se astfel, 2 componente conexe.\\
+In $G$, eliminarea muchiilor din $M$ genereaza aceleasi 2 componente conexe. Daca $m$ nu ar fi muchia cu costul cel mai mic din taietura, atunci $\exists m'\in M$ astfel incat $c(m')<c(m)\Rightarrow$ la crearea APM-ului, am fi putut uni cele 2 componente conexe folosind $m'$ in loc de $m$.\\
+Dar, asta ar insemna ca am obtine un arbore partial cu cost $< $ APM$\Rightarrow $ pentru $ \forall m$ din APM, $\exists$ o taietura in care $m$ este muchie de cost minim.  
+ \includegraphics[width=100mm,scale=1]{1c.jpg}
+\newpage
+\section*{Problema 2}
+\Large
+a) \\
+$E(T_H^*)=E(T^*) \cap E(H)$\\
+$T_H*$ este conex (ipoteza) si $E(T_H^*)\in E(T^*)\Rightarrow T_H^*$ conex si aciclic $\Rightarrow T_H^*$ arbore. \\
+Presupunem ca $ T_H^*$ nu ar fi arborele partial de cost minim al lui $H$.\\
+$\Rightarrow \exists$ in $H$ o muchie $(x,y)$ cu cost mai mic decat drumul de la $x$ la $y$ in $ T^* \cap H$.\\
+Daca incercam adaugarea lui $(x,y)$ la $ T_H^* \Rightarrow $ trebuie scoasa o muchie din $ T_H^*$ si inlocuita cu $(x,y)\Rightarrow$ am crea un alt drum minim care sa uneasca $x$ cu $y$ si nodurile dintre ele.\\
+ \includegraphics[width=35mm,scale=1]{2a.jpg}\\
+ (Adaugam muchia $(2,3)$, cream circuit, scadem muchia $(2,1)\Rightarrow$ ramane conex)\\
+Cu alte cuvinte, cum muchia $(x,y)\in H\Rightarrow (x,y) \in G\Rightarrow $ exista in $G$ o muchie cu cost $<$ decat un drum de la $x$ la $y$ care se afla in APM-ul grafului.$\Rightarrow$ contradictie $\Rightarrow$ presupunere falsa $\Rightarrow T_H^*$ este un arbore partial de cost $c$ minim al lui $H \Rightarrow H$ este $c$-extensibil.   \\ 
+NOTA: toate nodurile din H apartin lui $H \cap T^*$\\
+ \bigskip\\
+b) Contractarea tuturor muchiilor din $H$ se reduce la existenta unei singure muchii reprezentanta a intregului subgraf $H$.\\
+Muchii multiple se vor gasi intre $G-H$ si $H$ contractat.\\
+Fie $T_{G_H}$ arborele partial de cost minim al lui $G_H\Rightarrow$.\\
+Prin eliminarea muchiei care reprezinta contractarea grafului $H$ vom obtine 2 componente conexe, ambele arbori partiali de cost minim.\\
+Astfel, prin inlocuirea muchiei care reprezinta contractarea grafului $H$  cu arborele partial de cost minim al lui $H$, vom obtine tot un arbore, fiind un graf conex si fara cicluri care contine muchiile cu costurile cele mai mici din $T_{G_H}$ si muchiile cu costurile cele mai mici din $T_H^*\Rightarrow$ un APM
+
+
+
+\newpage
+\section*{Problema 3}
+\Large
+3.\\
+$i \rightarrow ii$\\
+In graful $G$ vom elimina pe rand cate un nod din multimile $S$, respectiv $T$ si vom urmari comportamentul acestora si al nodurilor ramase.\\
+$G-\{x,y\}$ este cuplaj perfect $\forall x \in S, \forall y \in T \Rightarrow G-\{x,y\}$, unde $G-\{x,y\}$ bipartit, continand un cuplaj perfect, inseamna ca satureaza toate nodurile $\Rightarrow$ nu raman noduri izolate nici in multimea $S-\{x\}$, nici in multimea $T-\{y\} \Rightarrow |S-\{x\}|=|T-\{y\}| \Rightarrow$ readaugand $x$ si $y$ fiecare in multimea lui, $|S|=|T|=$numar noduri$/2 = n/2$ notat cu $k$.   \\
+\bigskip\\
+Fie $S=\{ x,x_1,x_2,...,x_{k-1} \} $ si $T=\{ y,y_1,y_2,...,y_{k-1} \}$.\\
+Prin eliminarea lui $x$ si $y$ ramanem cu un cuplaj perfect.\\
+Prin notatie, alegem ca cuplajul sa se faca \\
+prin existenta muchiilor $(x_1,y_1)$,$(x_2,y_2)$,...,$(x_{n-1},y_{n-1})$.\\
+Pe de alta parte, prin eliminarea lui $x$ si $y_1$ trebuie sa obtinem de asemenea un cuplaj perfect$\Rightarrow x_1$ si $y$ trebuie si ele saturate, tinand cont de faptul ca, cunoastem o modalitate de a satura celelalte noduri, din pasul precedent.\\
+Ne dam seama ca oricum vom elimina perechea $x$ si $y_i$ unde $i=1...k-1$, vom fi nevoiti sa il saturam pe $y\Rightarrow$ va exista macar un nod diferit de $x$ pentru care exista o muchie care apartine unui cuplaj perfect. \\
+Utilizand aceeasi metoda, vom obtine ca $\forall y_i$ este legat de 2 noduri distincte. De asemenea $\forall x_i$ este legat de 2 noduri distincte.\\
+Vom incerca sa cream cel mai mai nefavorabil caz (cel in care graful nu ar fi conex), de unde vom avea niste structuri, ca niste "clepsidre", care vor arata astfel:\\
+ \includegraphics[width=40mm,scale=1]{3a.jpg}\\
+ Alaturand mai multe astfel de structuri, obtinem mai multe componente conexe in interiorul carora oricum am elimina 2 noduri $x \in S$ si $y \in T$, graful $G-\{x,y\}$ sa contina un cuplaj perfect, fara insa sa fie conex.\\
+Insa, oricum am elimina $x$ din $S$ si $y$ din $T$ care sunt din componente "clepsidra" diferite, vom obtine macar 2 noduri care nu vor putea fi saturate, unul in $S$ si unul in $T$.\\
+$\Rightarrow$ pentru a putea mentine cuplaj perfect, oricum am elimina 2 noduri, $x,y$ ca mai sus, trebuie sa existe macar o muchie care sa conecteze cele 2 componente conexe. Analog, se vor conecta astfel toate compontentele, graful $G$ rezultand a fi conex, chiar si in cel mai nefavorabil caz.\\
+\bigskip\\
+Fie $x$ si $y$, 2 noduri intre care exista muchie.\\
+Stim ca $G-\{x,y\}$ are cuplaj perfect. $\Rightarrow$ daca am adauga inapoi muchia $(x,y)$ in graful $G$, am avea un cuplaj perfect. Analog, eliminam capetele oricarei muchii din $G$ si readaugand-o mereu vom obtine ca $G$ are un cuplaj perfect.\\
+$\Rightarrow \forall$ muchie din $G$ apartine unui cuplaj perfect.\\
+ 
+
+$ii \rightarrow iii$\\
+$G$ conex si $\forall e\in E(G) \in $ unui cuplaj perfect $\Rightarrow$\\
+$|S|=|T|$ si $\emptyset \neq A  \subsetneq S$ a.i. $|N_G(A)|>|A|$\\
+$\forall e \in E(G) \in$ cuplaj perfect $\Rightarrow (*)$ toate nodurile sunt saturate. $(**)$ avem $m$ muchii intr-un cuplaj perfect.$\Rightarrow $ saturam $2m$ noduri.\\
+$(*) $ si $(**) \Rightarrow 2m=n \Rightarrow m=n/2 \Rightarrow |S|=|T|=n/2$\\
+Graful $G$ contine un cuplaj perfect $\Rightarrow$ conform teoremei lui Hall ca $|N_G(A)| \geq |A|$
+$\forall A \subsetneq S$\\
+Pp ca $\exists  A \subsetneq S, |N_G(A)|=|A| $\\
+Toate nodurile din $A$ sunt legate doar de nodurile din $N_G(A)$.\\
+Dar, cum $G$ conex $\Rightarrow$ unul din nodurile din $N_G(A)$ trebuie sa fie legat de un nod din $S\setminus A$\\
+$\Rightarrow \exists y \in N_G(A), \exists x\in S \setminus A$ pentru care $m=xy \in E(G)$\\
+Cum $\forall$ muchie din $E(G)\in$ unui cuplaj perfect $\Rightarrow m\in$ unui cuplaj perfect $\Rightarrow$\\
+Vom avea in $A$ un numar de $k$ elemente, iar in $N_G(A), k-1$ elemente disponibile pentru a realiza cuplajul.\\
+(In contextul in care nu $\exists$ nicio muchie de la nodurile din $A$ catre nodurile din $T\setminus  N_G(A),$ iar existenta altor muchii de la nodurile din $T\setminus N_G(A)$ la nodurile din $S\setminus A$ se reduce la acelasi lucru ca apartenenta lui $m$ la un cuplaj perfect).\\
+Nu se poate realiza un cuplaj perfect (ramane un nod izolat)$\Rightarrow $ contradictie $\Rightarrow$\\
+$|N_G(A)|>|A| \Rightarrow$ c.c.t.d.\\
+\bigskip\\
+
+$iii \rightarrow i$\\
+$|N_G(A)|>|A|$ pentru $A \subsetneq S$ si $|N_G(A)|=|A|$ pentru $A=S\Rightarrow$ $|N_G(A)|\geq |A|, \forall A \subseteq S$ \\
+$G$ graf bipartit $\Rightarrow$ din Teorema lui Hall ca $G$ are un cuplaj perfect.\\
+\bigskip\\
+Stim ca $|N_G(A)|>|A|$ pentru $\forall A \subset S$, unde $|S|=n/2=k \Rightarrow$ luam acei $A$ pentru care $|A|=k-1$ (luam cazul in care eliminam $x$ din $S$) $\Rightarrow |N_G(A)|>k-1 \Rightarrow |N_G(A)|=k \Rightarrow$ oricum am elimina pe rand un $y \in N_G(A), |N_G(A)|=|A|=k-1$.Aceasta proprietate se propaga la orice submultime $A$ a lui $S$, cu mentiunea ca $|N_G(A)| \geq |A|$ (caz in care eliminam mai mult de un nod din $S$ si mai mult de un nod din $T$)\\
+$\Rightarrow$ oricum elimin 2 noduri, $x\in S$ si $y\in T$, $G-\{x,y\}$ are cuplaj perfect.\\
+\newpage
+\section*{Problema 4}
+\Large
+a)\\
+Fie $C$ un circuit din $G$. \\
+$M_1$ si $M_2$ cuplaje astfel incat $C=M_1 \cup M_2$ si $a(M_1)\geq a(M_2)$.\\
+Fie $a(M_2)=x$ si $a(M_1)=x+k \Rightarrow$ dupa modificarile efectuate in while, $a(M_2)=x-m_2, a(M_1)=x+k+m_1$, unde $m_1, m_2$ sunt numarul de muchii din $M_1$, respectiv $M_2$, iar $m_1 = m_2$ ($G$ graf bipartit $\Rightarrow C$ lungime para $\Rightarrow$ 2 cuplaje au acelasi numar de muchii)\\
+$\Rightarrow$   
+$[a(M_2)]^2=x^2$ si $[a(M_1)]^2=(x+k)^2$ iar dupa modificarile efectuate in while $[a(M_2)]^2=(x-m_2)^2, [a(M_1)]^2=(x+k+m_1)^2 \Rightarrow$ diferenta dintre $\Big [\sum_{e\in C} a(e^2) \Big]$ la pasul $i$ si pasul urmator va fi: $x^2 - 2xm_2 + m_2^2+ 2xk + k^2 + m_1^2 + 2m_1x + 2m_1k - 2x^2 - k^2 -2xk = m_2^2 + m_1^2 + 2m_1k > 0$ fiindca $k,m_1,m_2$ sunt numere pozitive(am redus anumiti termeni tinand cont de faptul ca $m_1=m_2$).\\
+$\Rightarrow$ la fiecare circuit avut, $\Big [\sum_{e\in C} a(e^2) \Big]$ va creste cu macar 1 $\Rightarrow$ in total $\Big [\sum_{e\in E^+} a(e^2) \Big]$ va creste cu cel putin $|C|$, unde $|C|$ este numarul circuitelor existente in $G$.\\
+\bigskip\\
+b)\\
+$G$ $p$-regulat $\Rightarrow \forall u \in G(V)$ este legat de $p$ muchii $\Rightarrow$ \\
+initial $\Big [\sum_{uv\in E^*} a(uv) = p\Big]$\\
+La fiecare pas din while, pentru $\forall u$ se va parcurge fiecare circuit incident cu el. Doua muchii incidente cu $u$ care fac parte din acelasi circuit se vor afla in cuplaje diferite $\Rightarrow$ costul uneia dintre muchii va creste cu 1, in timp ce costul celeilalte va scadea cu 1, ramanand astfel, intotdeauna cu un cost constant la fiecare pas din while. Astfel, costul ramane intotdeauna $p$.\\
+ \includegraphics[width=40mm,scale=1]{4b.jpg}
+\end{document}

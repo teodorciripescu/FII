@@ -1,0 +1,11 @@
+CONSULTATII:
+
+PC1:
+n nr complex
+m nat. >2
+rad. nr nat din nr complex
+
+PC2:
+q--polinom  //dat          
+a, b, c --nr reale  //date
+d=integrala de la a la b din q(x)dx

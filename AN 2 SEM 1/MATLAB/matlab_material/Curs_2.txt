@@ -1,0 +1,68 @@
+Unitati de progr. MATLAB de tip "functie":
+
+function [...]= numefun(...)
+  corp 
+end (plasata la finalul scriptului)
+
+f=@(x,y,...)expresie(...)
+                 |
+            x ^ 2-y ^ 3-...
+cos(@f)
+...=expr
+
+
+Functii MATLAB relative la calcul numeric:
+
+Calcul numeric=calcul cu valoarea var.
+Trigonometrie:
+  sin(cu argument in radiani), sind(cu arg. in grade), sinh(sin. hiperbolic),
+  asin, asind, asinh,
+  tan, tand, tanh, 
+  atan, ...
+Exponentiale, logaritmice:
+   e=exp, expm(pt. matrici), log(in baza e), log10(in baza 10), log2(in baza 2)
+   expm1(exponentiala unui argument-1), pow(pt. a calc. o putere)
+Matrici:
+   trace(A)=suma elem. de pe diag. principala
+   gallery(A, 'vander'), A-vector --> fliplr,rot90
+   gallery(A, 'cauchy')---1/(v(i)+v(j))
+   gallery(A, 'jordbloc')
+   cross(cei 2 vectori)
+  i, j, k barate 
+  u=(u1,u2,u3)
+  v=(v1,v2,v3)
+             |i  j   k|-->barate
+     u x v = |u1 u2 u3|
+             |v1 v2 v3| 
+  =(u2v3-u3v2)i barat+(v1u3-u1v3)j barat+(u1v2-u2v1)k barat
+    det(A,2)
+    cond 
+    linsolve(A,b)
+  Ax=b
+  x=A\b
+    pinv(pseudoinversa): BxAxB=A
+    lsqminnorm(A,b)
+  ||Ax-b||=sqrt(suma de la x=1 la n din (Ax-b)^2)
+    sylvester(A, B, C)
+  AX+XB=C 
+Matematici discrete:
+    factor(n)
+    factorial(m)
+    gcd
+    lcm
+    nchoosek(n,k)-->combinari de n luate cate k
+    rat(r)-->fractia corespunzatoare nr. respectiv
+    rats()-->stringul corespunzator val. returnate de rat()
+Integrari:
+    diff(v,3)-->diferenta divizata de ord. 3
+    integral(f,a,b); f-->functie handle
+    integral(f,a,b,tol); tol-->toleranta(=eps)
+    integral2()
+    integral3()
+    quadgk
+    quad2d
+    trapz()
+    cumtrapz
+    fft
+    fft2
+    

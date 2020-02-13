@@ -1,0 +1,72 @@
+Elemente de Matlab
+>>
+1.MathWork(documentatie)
+ class()
+ whos
+ >>var=pi;
+ >>var
+ >>who
+ >>whos
+ >>format_bank;
+ >>format long;
+ >>format vat;
+ >>format short e
+ >>format long e
+ >>format compact
+ >>format loose
+ 
+ //iskeyword( )
+ // clear
+ >>help sum
+  >>doc sum
+  comentarii %{ %{
+ s
+2.Constante
+ eps,non,inf,realmax,realmin, pi,i,j
+ 
+3.Functii de rotunjire(trunchiere)
+  ceil,floor
+ 
+4.Operatorii aritmetici
+  + : plus(a,b)
+  a+b
+  - * .*(inm fiecare el cu fiecare el)
+  /
+  A\B (B/A^-1)
+  ./  .\  
+  ^ si .^ (pt matrice)
+  definire tablouri:
+  A= [ ];
+  A( , ); //matricea se completeza by default pe coloane
+  
+  
+  exemplu : V=[-17;pi;sqrt(2);0]
+  (vector coloana)
+  
+  
+  length(V)
+  size(A)
+  sum(V)
+  cumsum(V)
+  norm(V)
+  sort(V)
+  
+  
+  
+ 
+  
+ 5.Operatorii relationali : <,>,<=,>=,==,~=
+  
+ 6.Operatorii logici:
+  * & &&
+  
+  * disjunctie:|
+  * ~
+
+
+nume_prenume_MCM3_PL1
+
+Se da o matrice numerica, nr reale, cel putin 5 linii si 7 coloane (m,n) 
+Se cere evidentierea tuturor perechilor de linii ingemanate
+
+input 

@@ -1,0 +1,40 @@
+/*
+Acesta este un exemplu de mini-limbaj de tip assembly.
+Scrieti un compilator care sa verifice daca acest limbaj este corect din punct de vedere sintactic.
+
+Caracteristici:
+
+Registrii: "eax", "ebx", "ecx", "edx", "ebp, "esp"
+Valori in baza 16: "0x213AAB"
+Operatii cu registrii/valori: "mov", "add", "sub", "div", "mul", "xor"
+Operatii pe stiva: "push reg/val" sau "pop reg/val"
+Locatii de jump de forma: "__loc__adresa:", cu exceptia main-ului care este de forma: "__main"
+Instructiuni de tip jump: "jnz __locatie_0x1" sau "jz __locatie_0x2"
+Continutul zonei de memorie indicat de un registru (spre ex: ebp): "[ebp]".
+Instructiunea de return: "ret"
+  
+*/
+
+__main:
+	mov ebp, esp
+	mov eax, [ebp+0x8]
+	mov ebx, 0x7821AFC
+	add ebx, 0xcc
+	sub ebx, [ecx-0x23]
+	cmp ebx, 0x7821AAA
+	jz __loc__0x11
+	xor eax, eax
+	div edx, 0x0
+__loc__0x11:
+	cmp edx, 0x4123
+	push eax
+	push 0x1234
+	jnz __loc__0x44
+	mul ecx, 0x200
+__loc__0x44:
+	add eax, ecx
+	add eax, ebx
+	pop ecx
+	pop edx
+	add eax, 0x124
+	ret

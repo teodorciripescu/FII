@@ -1,0 +1,55 @@
+def i_a;
+def f_b;
+def i_a~2;
+def i_a[3]~{2,3};
+def c_c;
+def c_c~'c';
+def s_cuv[100];
+def s_cuv~"ada";
+def b_z;
+def b_z~true;
+
+
+
+def i_prim(i_n){ def b_z;
+def b_z~true;};
+
+def i_prime(i_a,i_b,i_v[100]){
+def c_c;
+def c_c~'c';
+
+}; 
+/$toate nr prime din int a,b puse in vectorul v $/
+
+def struct_elem(i_a);
+def struct_elem(i_n,s_cuv[4],i_prim(i_n));
+def struct_elem(i_a~2);
+def struct_elem(i_n,s_cuv~"ada",i_prim(i_n));
+
+const i_max~3;
+beg
+
+
+
+
+i_a~3;
+((b_z xor b_s) and (b_q or b_w));
+
+i_prime(i_a,i_b,i_v[100],i_prim(i_a));
+i_a~i_prime(2,i_b,i_v[100],i_a+i_b);
+
+if i_x>i_y then { i_k~1;i_k~(i_k+1);};
+
+while i_x>i_y { i_k~1;};
+
+for i_k~0 ; 
+i_x>i_y ;
+ 2+3 
+{
+    i_p~6;
+};
+
+
+
+
+end

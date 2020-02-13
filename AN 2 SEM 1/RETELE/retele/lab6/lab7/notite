@@ -1,0 +1,7 @@
+sigchld
+trb sa adauc fork wait  dupa accept
+waitul se face cand se termina un proces copil
+waitpid cu o val la un param poate fi facut neblocant
+wnohang - a nu avea caract blocant
+-1 un apel waitpid dealoca orice proces zombie
+while(waitpid(-1, , WNOHANG))

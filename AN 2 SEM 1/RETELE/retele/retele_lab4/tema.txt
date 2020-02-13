@@ -1,0 +1,19 @@
+-parintele face 2 readuri
+a 2a citire verifica c a a citit tot
+-fisier text cu cate un username pe fiecare rand
+copilul verifica existenta si returneaza un ok parintelui
+daca s a logat cu succes il lasam sa dea in continuare comenzi
+-cauta in mod recursiv un fisier in fct de permisiuni
+sta in contul nostru ( ~ )
+nu folosim o functie exec sau system (fara find de sistem)
+implementam noi gasirea fisierelor in mode recursiv
+folosim api-uri de sistem
+-quit inchide aplicatia ( aplicatia sa se inchida corespunzator (durata de viata a copiilor,..))
+
+trebuie sa folosim si pipe, si fifo, si socketuri !!!!!!
+pipeuri externe sunt fisiere fifo
+
+punctajul se acorda pe ce prezentam
+trebuie sa stim sa explicam ce am facut acolo
+
+in exemplul cu socket nu e pus wait.. daca avem fork noi trebuie sa avem wait!

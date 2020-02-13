@@ -1,0 +1,48 @@
+trebuie facuta documentatia
+spunem in cuvintele noastere cum rezolvam problema, proiectul pe care il dezbvolta
+folosim o aplicatie web/desktop pt diagrame:
+draw.io - pt diagrame
+(diagrama arhitecturala pt structura aplicatie noastre)
+-sa nu fie prea generica
+toate detaliile, modulele( de auth, de consupare a nu stiu carui API)
+partea de client(poate )
+daca serverul lucreaza cu un filesystem
+daca lucreaza cu o baza de detaliile
+
+
+
+detalii de implementare, cod relevant
+scenarii de utilizare
+(ne gandim la multe use cases: se deconecteaza clientul, intra in bucla infinita,....)
+descriem protocolul la nivelul aplicatiei pe care il construim
+patternul de comunicare( se primeste un rasp, 2 rasp... cati octeti....)
+(la prima tema am avut un protocol cu 4 comenzi)
+partea de cod efectiv, implementam proctocolul dar fara functionalitate( colientul trimite comanda serverului, serverul raspunde , e activata comunicarea intre, entitatile participante la comunicare pot efectiv comunica)
+NU implementarea si a functionalitatii
+resurse, trecute la bibliografie
+daca luam cod de undeva, trecem comentariu de unde am luat portiunea de cod!!!
+trebuie sa respecte un anumit format (margini,...)
+////
+
+
+
+
+lab 9
+prima rulare a serverului:
+-vom avea un sg descriptor (ce de socket)
+selectul va debloca la prima rulare a serverului daca un client incearca sa se conecteze
+dupa ce dblocheaza selectul, trebuie sa parcurgem multimile monitorizate si sa vedem care descriptor s a modificat
+de aia avem if in fata, sa vedem ca daca a fost marcat(FD_ISSET)
+
+prima data 
+
+
+actfsd - aici adaugam descriptorul la noi clienti (e multimea de descriptori)
+la al doilea select facut in while avem 2 descriptori, sd si descriptorul clientului
+select il marcheaza, il deblocheaza, primul if nu mai returneaza true(pt ca nu mai avem client nou)
+intram pe for, parcurgem toti descriptorii
+forul incepe de la valoarea 4, sare peste 0 1 2 3 - descriptori standard input output error socket
+serverul nu este concurent
+daca comunicarea ar dura 1 min cu un client, celalalt client e blocat si abia apoi e si el procesat
+(din cauza forului nu se intampla totul in paralel)
+ca sa optimizam putem folosi threaduri (sau fork dar e mai ineficient)

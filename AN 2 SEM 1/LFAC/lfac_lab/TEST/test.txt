@@ -1,0 +1,23 @@
+__main:
+	mov ebp, esp
+	mov eax, [ebp+0x8]
+	mov ebx, 0x7821AFC
+	add ebx, 0xcc
+	sub ebx, [ecx-0x23]
+	cmp ebx, 0x7821AAA
+	jz __loc__0x11
+	xor eax, eax
+	div edx, 0x0
+__loc__0x11:
+	cmp edx, 0x4123
+	push eax
+	push 0x1234
+	jnz __loc__0x44
+	mul ecx, 0x200
+__loc__0x44:
+	add eax, ecx
+	add eax, ebx
+	pop ecx
+	pop edx
+	add eax, 0x124
+	ret

@@ -1,0 +1,216 @@
+\documentclass{article}
+
+\usepackage[margin=1in,includefoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb ,amsthm}
+\usepackage[ utf8 ]{ inputenc}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{graphicx}
+\graphicspath{ {\string~/Desktop/} }
+\algnewcommand\algorithmicforeach{\textbf{for each}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+\pagestyle{fancy}
+\begin{document}
+\begin{titlepage}
+	\begin{center}
+	\line(1,0){200} \\
+	[0.25 in]
+	\huge{\bfseries Tema 1} \\
+	[2mm]
+	\line(1,0){125}\\
+	[1.5cm]
+	\textsc{\LARGE Mocanu Ada-Astrid\\ \& \\Ciripescu Teodor}\\
+	[5mm]
+	Grupa A7\\
+	[10mm]
+	\LARGE 8 Noiembrie 2019\\
+	\end{center}
+\end{titlepage}
+
+
+
+\newpage
+\section*{Problema 1}
+\Large
+a) Ne dorim sa aratam ca $\forall u\in V(G)$ si $\forall v\in V(G), \exists$ un drum orientat de la $u$ la $v$ daca si numai daca $\forall$ ar fi $e\in E(G), $ $G\setminus \{ e\}$ ramane conex.
+ \bigskip\\
+ $(\Rightarrow)$ Pp. ca $\exists e\in E(G)$ a.i. $G\setminus \{ e\}$ nu e conex.
+  \bigskip\\
+Atunci, $\exists u,v\in V(G)$ a.i. in $G\setminus \{ e\}$ nu $\exists$ drum de la $u$ la $v$ si de la $v$ la $u$.
+ \bigskip\\
+Dar din ipoteza, $\forall u,v\in V(G), \exists$ un drum orientat de la $u$ la $v \Rightarrow$ Contradictie.
+\bigskip\\
+Asadar, $\forall u,v \in V(G)$ a.i. $\exists$ un drum orientat de la $u$ la $v$ IMPLICA $\forall e\in E(G),$ $G\setminus \{ e\}$ ramane conex.
+ \bigskip\\
+ $(\Leftarrow)$  (este implicata de corectitudinea algoritmului de la subpunctul (b) )\\
+ \bigskip\\
+ b)
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{compute}{}
+\State $nr\_circuit \gets \textit{$1$}$
+\ForEach { $nod\_curent\in V(G)$ }
+	\If {nu am parcurs toate nodurile}
+		\State parcurgere($nod\_curent$, $nr\_circuit$) \Comment{incepem ciclul nr $k$ din nodul $u$(daca $\exists$ drumul) }
+		\State $nr\_circuit \gets \textit{$nr\_circuit + 1$}$ \Comment{trecem la ciclul/circuitul urmator}
+	\EndIf
+\EndFor
+\EndProcedure
+\Procedure{parcurgere}{$nod\_curent, nr\_ciclu$}
+\State $vizitare[nod\_curent] \gets \textit{$nr\_circuit$}$
+\ForEach { $nod\in V(G)$ }
+	\If {muchia $nod\_curent - nod$ are alocat un sens}
+		\State pastram sensul
+		\State continuam parcurgerea din $nod$
+	\Else{} 
+		\If {$\exists$ muchia $nod\_curent - nod$}
+		\State ii dam sens de parcurs de la $nod\_curent$ spre $nod$
+		\State continuam parcurgere din $nod$
+		\EndIf
+	\EndIf
+\EndFor
+\State ne oprim cand ajungem din nodul din care am pornit
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Grafurile care respecta proprietatile cerute sunt formate din mai multe cicluri alaturate, intre care pot exista coarde. (analogie cu "floricelele")\\
+Prin parcurgerea fiecarui ciclu, dand sens fiecarei muchii si formand un circuit, vom ajunge sa vizitam fiecare nod pana la incheierea programului.\\
+(Astfel incat pentru fiecare ciclu "vecin" cu un circuit deja format, vom incepe acel nou circuit urmand sensul circuitului sau "vecin", unde vecin se refera la faptul ca au muchii comune).\\
+
+\includegraphics[width=80mm,scale=1]{1b.jpg}
+\newpage
+\section*{Problema 2}
+\Large
+a) $(\Rightarrow) X\subseteq V$ este $uv$ - separatoare minimala si demonstram ca orice nod din $X$ are vecini in ambele componenete.
+\bigskip\\
+Pp. Reducere la Absurd\\
+$X\subseteq V$ este $uv$ - separatoare minimala a.i. $\exists x\in V(X)$, care nu are vecini in ambele componente.\\
+$\Rightarrow$\\
+Caz 1. $x$ nu are vecini in niciuna din componenete $\Rightarrow u$ poate fi eliminat din multimea $X \Rightarrow X\setminus \{ x\}$ este $uv$ - separatoare si are cardinal $<X \Rightarrow X$ nu e minimal.\\
+Caz 2. $x$ are vecini intr-o singura componenta $C_{1} \Rightarrow$ putem muta $x$ din $X$ a.i. $ x\in C_{1}\Rightarrow$ $ \exists Y=X\setminus \{ x\}$ care este $uv$ - separatoare si are cardinal $< X\Rightarrow X$ nu este minimal.
+\bigskip\\
+$\Rightarrow$Ambele False $\Rightarrow$ $\forall x\in X $, $x$ are vecini in ambele componente rezultate prin eliminarea tuturor nodurilor din $X$.\\
+\bigskip\\
+
+ $(\Leftarrow)$ Daca $\forall$ nod din $X$ are vecini in ambele componente, atunci $X\subseteq V$ nu este $uv$ - separatoare minimala (adica $X\subseteq V$ este doar $uv$ - separatoare).
+   \smallskip\\
+ $\Rightarrow \exists Y \subseteq X$ submultime a lui $X$.\\
+ $\Rightarrow \exists x\in X$, $x \notin Y$ ai $xu\in E(G), xv\in E(G)$ unde $u\in C_{1}, v\in C_{2} $\\
+
+ $\Rightarrow$ cum $x\notin Y\Rightarrow$ $x$ poate apartine uneia dintre cele 2 componente, spre exemplu, $x\in C_{1}$.\\
+ Dar asta inseamna ca prin eliminarea lui $Y$ nu putem obtine 2 componente conexe (pentru ca $xv$ actioneaza ca punte) $\Rightarrow$ Contradictie.\\
+ $\Rightarrow$ Daca $\forall$ nod din $X$ are vecini in ambele componente, atunci $X$ este $uv$ - separatoare minimala.\\
+ \bigskip\\
+b) -
+
+
+
+\newpage
+\section*{Problema 3}
+\Large
+a) Vom alege o implementare cu matrice de adiacenta, deoarece observam ca implementarea cu liste simplu inlantuite genereaza o complexitate egala cu $O(n^2) + O(n*m)$. Pe de alta parte, utilizand o matrice de adiacenta, obtinem o complexitate de $O(n^2)$. De mentionat ca utilizam un vector $d$, pentru a memorarea gradelor nodurilor. Crearea matricei are complexitate $O(n^2)$. Parcurgerea nodurilor se face in $O(n)$, iar verificarea gradului nodului in $O(1)$. Eliminarea nodului din graf se face in $O(1)$, insa este necesara si refacerea constanta a vectorului de grade, in $O(n)$, fapt ce este repetat pentru fiecare nod $\Rightarrow O(n)*O(n)=O(n^2)$. Asadar, complexitatea timp a algoritmului este $O(n^2)$.
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\begin{algorithm}
+\begin{algorithmic}[1]
+\State $G' \gets \textit{$G$}$ \Comment{$O(n^2)$}
+\While{$\exists u \in V(G')$ a.i. $d_{G'}(u) < m/n$}\Comment{$O(n)+O(1)$}(parcurgere + interogare vector grade)
+\State $G' \gets \textit{$G' - u$}$ \Comment{$O(1)+O(n)$}(eliminare + refacere vector grade)
+\EndWhile \\
+\Return{$G'$}
+\end{algorithmic}
+\end{algorithm}\\
+\bigskip\\
+b) Dorim sa observam evolutia raportului muchii-noduri in graful $G'$.\\
+Pp ca la Pasul nr. 1 eliminam un nod si implicit  $k$ muchii. Astfel, vom avem $n_{1}=n-1$ si $m_{1}=m-k$.\\
+Comparand raportul $m/n$ cu $m_{1}/ n_{1}$, obtinem ca acesta este echivalent cu compararea lui $m*n - m $ cu $m * n - k * n$\\
+$\Rightarrow$ avem de comparat $k*n$ cu $m$. Dar $k<m/n$ deoarece $k$ este gradul nodului pe care il eliminam $\Rightarrow m/n<m_{1}/ n_{1}$\\
+Aplicam INDUCTIE\\
+Presupunem ca $m_{p-1} / n_{p-1}<m_{p} / n_{p}$. \\
+Fie $m_{p+1} = m_{p}-y$, unde $y$ este gradul unui nod eliminat si $n_{p+1}=n_{p}-1$.\\
+Vom compara $m_{p}/n_{p}$ cu  $m_{p+1}/n_{p+1}$. Fapt care se reduce la compararea lui $y*n_{p}$ cu $m_{p}\Rightarrow y$ trebuie comparat cu $m_{p}/n_{p}$\\
+Cum $m_{p}/n_{p}>m/n$, dar $m/n > y \Rightarrow y<m_{p}/n_{p} \Rightarrow m_{p}/n_{p} < m_{p+1}/n_{p+1}$.\\
+Fie $k$ pasul final din executarea algoritmului.\\
+Pp ca graful rezultat are 0 muchii$\Rightarrow m_{k}=0\Rightarrow m_{k} / n_{k}=0$. Dar $m_{k} / n_{k}>m/n \Rightarrow 0>n/m$ \\
+$\Rightarrow$Contradictie $\Rightarrow$ Graful nu poate fi niciodata nul.
+
+\bigskip
+c)
+$\forall v, d(v)\geq \frac{m}{n}$ \\
+Din punctul b) $\Rightarrow \forall$ graf rezultat prin taierea tuturor nodurilor cu grad$ < \frac{m}{n}$ este nenul.\\
+Cu alte cuvinte, $\forall v, d(v)\geq \frac{m}{n} \Rightarrow \forall v\in V(G')$ are macar $\frac{m}{n}$
+ vecini $\Rightarrow \exists$ cel putin $\frac{m}{n} + 1$ noduri in $G'$.\\
+ Un nod $x_{1}$ are $\frac{m}{n}$ vecini dintre care unul este $x_{2}$ (generand astfel un drum de lungime 1).\\
+ $x_{2}\in V(G')\Rightarrow d(x_{2}) \geq \frac{m}{n} \Rightarrow x_{2}$ are si el $\frac{m}{n}$ vecini $\Rightarrow$ are macar $\frac{m}{n} - 1$ vecini diferiti de $x_{1}$; unul dintre ei fiind $x_{3}$, iar $x_{3}$ are macar $\frac{m}{n} - 2$ vecini, diferiti de $x_{1},x_{2}$ (generand drum de lungime 3).\\
+\includegraphics[width=50mm,scale=1]{pb3c.jpg}\\
+Astfel, ajungem la $x_{\frac{m}{n}-1}$ care are macar 2 vecini diferiti, de $x_{1},x_{2},...,x_{\frac{m}{n}-2}$, unul fiind $x_{\frac{m}{n}}$ (gen. drum de lungime $\frac{m}{n}-1$).\\
+Asadar, $x_{\frac{m}{n}}$ are macar 1 vecin diferit de $x_{1},x_{2},...,x_{\frac{m}{n}-1}$, notat $x_{\frac{m}{n}+1}$ si el genereaza un drum de lungime $\frac{m}{n}$.\\
+$\Rightarrow$ Graful contine un drum de lungime cel putin $\frac{m}{n}$.
+\bigskip\\
+
+
+\newpage
+\section*{Problema 4}
+\Large
+a) $x_{0} \in V$ din care toate celelalte noduri sunt accesibile $\Rightarrow G$ conex\\
+Avem si o functie de cost $a:E \rightarrow \mathbb{R+} \Rightarrow \nexists$ cicluri negative\\
+$\Rightarrow$ putem aplica algoritmul lui Dijkstra, astfel generand un arbore cu drumuri minime(de la un varf la toate celelalte)\\
+
+\includegraphics[width=62mm,scale=1]{pb4a.jpg}
+In exemplul alaturat am pornit din nodul 1
+\bigskip\\
+b) Fie $a$ o matrice de dimensiune $n\times n$, care reprezinta matricea cost drumuri.
+\[
+    a[i][j]=
+\begin{cases}
+    0,& \text{daca  i=j (nu exista cost de la un nod la el insusi) }\\
+    cost(arc),& \text{daca  $\exists$ arc de la i la j }\\
+    \infty,              & \text{altfel}
+\end{cases}
+\]
+Fie $x_{0}$ nodul din care vom porni pentru aflarea drumului de la $x_{0}$ la oricare alt nod. $drum[i]$ este vectorul in care obtinem drumul de la $x_{0}$ la $i$ de cost minim.
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{compute}{}
+\ForEach { $u\in V(G)$ a.i. $u\neq x_{0}$ }
+\State $drum[u] \gets \textit{$a[x_{0}][u]$}$
+\EndFor
+\BState $selectat[v] \gets \textit{1}$
+\BState $k \gets \textit{1}$
+\While{$k\leq n-1$}
+\State $min \gets \textit{$\infty$}$
+\ForEach { $u\in V(G)$ }
+\If {$drum[u] < min $  $  \&\& $ $ (!selectat[u])$}
+\State $min \gets \textit{$drum[u]$}$
+\State $pozmin \gets \textit{$u$}$
+\EndIf
+\EndFor
+\State $selectat[pozmin] \gets \textit{$1$}$
+\ForEach { $u\in V(G)$ }
+	\If {$!selectat[u]$}
+		\If {$drum[u]>drum[pozmin]+a[pozmin][u]$}
+			\State $drum[u] \gets \textit{$drum[pozmin]+a[pozmin][u]$}$
+		\EndIf
+	\EndIf
+	\State $k\gets \textit{$k+1$}$
+\EndFor
+
+\EndWhile \\
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+\end{document}

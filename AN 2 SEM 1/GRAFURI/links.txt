@@ -1,0 +1,2 @@
+https://drive.google.com/drive/folders/1YuNr4VsTCk8qG_eX74qhJNr43af7F9E3?fbclid=IwAR25NlnCceLJCUKyIMJ3MAjwRm_QDQVqcruTOFsH9TXJ9bfWrq_fXSWf_mY
+aratati ca pentru orice instanta a problemei 3SAT se poate decide in timp polinomial daca este satisfiabila at pentru orice graf bipartit se poate decide in timp polinomial daca este hamiltonian

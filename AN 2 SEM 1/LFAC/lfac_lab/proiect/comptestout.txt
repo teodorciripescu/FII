@@ -1,0 +1,8 @@
+start...
+| i_a | variabila | tip : INT |
+
+
+
+| i_prim | variabila | tip : INT |
+| i_prime | variabila | tip : INT |
+| i_prim | variabila | tip : INT || i_prim | variabila | tip : INT || i_prime | variabila | tip : INT || i_prim | variabila | tip : INT || i_prime | variabila | tip : INT |

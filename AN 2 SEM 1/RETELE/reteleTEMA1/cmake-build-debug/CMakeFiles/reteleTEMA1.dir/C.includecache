@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/teodorciripescu/CLionProjects/reteleTEMA1/main.c
+stdio.h
+-
+string.h
+-
+dirent.h
+-
+sys/stat.h
+-
+sys/types.h
+-
+time.h
+-
+sys/wait.h
+-
+sys/socket.h
+-
+unistd.h
+-
+stdlib.h
+-
+fcntl.h
+-
+

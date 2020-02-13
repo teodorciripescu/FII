@@ -1,0 +1,74 @@
+
+Alte tipuri de date in MATLAB. Functii MATLAB corespunzatoare lucrului cu asemenea date
+
+
+double(stringuri->date reale), single(string), int8, int16, int32, int64, uint8, uint16, uint32, uint64
+ex: b=uint16(a) 
+
+logical(v); v=vector->cont, table(...)
+
+s=struct(c1, vc1, c2, vc2, ...); s.c3
+
+rmfield(s.c3)-->indepertarea unui anumit camp dintr-o anumita structura
+s.a=....;
+s.t=....;
+
+celula { }
+
+cell(a)
+
+Pt. multimi:
+A={ ... }
+B={ ... }
+C=intersect(A, B)
+D=union(A, B); E=unique(D)
+setdiff(A, B)
+setxor(A, B)
+ismember(r, A)
+join
+
+cell2mat(A)
+s=cell2struct(A)
+celldisp(A)-->afisafre
+cellplot(A)-->grafic
+iscell(A)
+class(A)-->recunoastere tip data
+islogical(w)
+U=mat2cell(V)
+q=num2cell(pi)
+struct2cell
+cellfun(f, A)
+
+
+
+X=char(Y); X(7); vector de simboluri: ' '
+s=string(L); text: " "
+strtok(s)
+isstrprop(s, 'num') sau alpha, alphanum, letter, lower, upper
+strjust(s, 'right') sau left, center
+
+s3=[s1;s2]
+strvcat(s1, s2)
+strcat
+cat(s1, s2)
+strcmp(s1, s2)
+strncmp(s1, s2, n)
+erase(s1, s2)
+s4=strrep(s1, s2, s3)
+blanks(l)
+disp(blanks(n))
+strtrim
+
+
+
+Symbolic Toolbox:
+
+sym('7/5')
+z=sym('pi')
+vpa(z)
+d=digits(100)
+vpa(z, d)
+syms a b c ;
+f=a^2-b*c
+diff(f, c);
+diff(f, 2, a)

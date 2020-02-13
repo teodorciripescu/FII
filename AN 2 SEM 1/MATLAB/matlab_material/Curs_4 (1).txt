@@ -1,0 +1,48 @@
+Elemente de grafica in MATLAB:
+plot
+X,Y-->initial sunt vectori          X=[ ... ]
+                                    X=x1:p:xf  (X=-5:0.5:3)
+                                    X=lnspace(-5,3,12)
+                                    X=logspace(-5,3,12) --> ultima val. e implicit 50
+                                    Y=f(X)=sin(X).*exp(-X) --> f(X)=vector
+plot(X,Y)
+plot(X,Y,':' sau '-' sau '--' sau '_.' sau 'b' sau 'r' sau 'g' sau 'm' sau 'y' sau 'w' sau 'k' sau 'c' sau '*' sau 'x' sau 's' sau 'd' sau 'p' sau 'h' sau 'v' sau '<' sau '>', 'lineWidth', 2, 'ColorLine', _, 'MarkerSize', 4, 'MarkerEdgeColor', c, 'MarkerFaceColor', y, U, V, '_.gd'); U, V --> alti vectori
+Pt. a nu deschide o noua fereastra grafica: hold on  --> pastraza fereastra grafica
+                                        ... hold off           
+stairs(X, Y)
+area
+fill
+scatter
+comet
+feather
+quiver
+stem( ... ) --> cu aceiasi param. ca si plot
+error  
+bow 
+bash 
+pie
+expload
+
+X, Y, Z       [X, Y]=meshgrid(X, Y)
+plot3(X, Y, Z)
+surf(X, Y, Z)
+mesh(X, Y, Z)
+meshc(X, Y, Z)
+meshz(X, Y, Z)                  
+pie3
+fill3
+waterfall(X, Y, Z)
+ribbon(X, Y, Z)
+
+subplot(m, n, p) 
+subplot(3, 4, [1,2]);    
+....
+subplot(3, 4, 4);
+....
+subplot(3, 4, [5;9]);
+subplot(3, 4, [6;8]);
+
+sphere(n) --> n = nr. de pcte. prin care se forneaza sfera, n>=25
+cylinder([R1, R2], n) --> R1 = raza cercului circumscris bazei mici 
+                          R2 = raza cercului circumscris bazei mari
+view(30, 70)

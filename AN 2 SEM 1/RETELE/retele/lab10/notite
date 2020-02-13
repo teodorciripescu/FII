@@ -1,0 +1,18 @@
+UDP 
+SOCK_DGRAM ca parametru pt UDP
+IPdatagrams UDPdatagrams sunt diferite
+
+
+exemplul dat e secvential
+daca dorim paralelism,...
+
+daca sunt multe pachete e nasol cu procese copil
+threadurile sunt mult mai bune mult mai lighweight
+parser de unicode
+
+udp are o anumita limita: nu putem trimite date peste un anumit prag
+
+
+
+1.dim maxima a unui payload pt udp
+ne uitam la headerele ip si upd si calculam dimensiunile

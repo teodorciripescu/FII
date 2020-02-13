@@ -1,0 +1,8 @@
+1.
+
+2.folosind primul cod fork.c
+ori adaug un sleep,
+generez un proces orfan, iar apoi unul zombie
+
+3. creez un program care trimite semnale
+man2kill

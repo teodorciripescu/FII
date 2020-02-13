@@ -1,0 +1,387 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.11.3)  8 JAN 2020 15:36
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**samplepaper.tex
+(./samplepaper.tex
+LaTeX2e <2018-12-01>
+(./llncs.cls
+Document Class: llncs 2018/03/10 v2.20 
+ LaTeX document class for Lecture Notes in Computer Science
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2018/12/27 v1.8v multicolumn formatting (FMi)
+\c@tracingmulticols=\count88
+\mult@box=\box27
+\multicol@leftmargin=\dimen103
+\c@unbalance=\count89
+\c@collectmore=\count90
+\doublecol@number=\count91
+\multicoltolerance=\count92
+\multicolpretolerance=\count93
+\full@width=\dimen104
+\page@free=\dimen105
+\premulticols=\dimen106
+\postmulticols=\dimen107
+\multicolsep=\skip43
+\multicolbaselineskip=\skip44
+\partial@page=\box28
+\last@line=\box29
+\maxbalancingoverflow=\dimen108
+\mult@rightbox=\box30
+\mult@grightbox=\box31
+\mult@gfirstbox=\box32
+\mult@firstbox=\box33
+\@tempa=\box34
+\@tempa=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\c@columnbadness=\count94
+\c@finalcolumnbadness=\count95
+\last@try=\dimen109
+\multicolovershoot=\dimen110
+\multicolundershoot=\dimen111
+\mult@nat@firstbox=\box51
+\colbreak@box=\box52
+\mc@col@check@num=\count96
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/aliascnt.sty
+Package: aliascnt 2018/09/07 v1.5 Alias counters (HO)
+)
+\c@chapter=\count97
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 362.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 363.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 364.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 365.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 366.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 367.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 368.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 369.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 370.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 371.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
+\tocchpnum=\dimen112
+\tocsecnum=\dimen113
+\tocsectotal=\dimen114
+\tocsubsecnum=\dimen115
+\tocsubsectotal=\dimen116
+\tocsubsubsecnum=\dimen117
+\tocsubsubsectotal=\dimen118
+\tocparanum=\dimen119
+\tocparatotal=\dimen120
+\tocsubparanum=\dimen121
+\@tempcntc=\count98
+\fnindent=\dimen122
+\c@@inst=\count99
+\c@@auth=\count100
+\c@auco=\count101
+\instindent=\dimen123
+\authrun=\box53
+\authorrunning=\toks14
+\tocauthor=\toks15
+\titrun=\box54
+\titlerunning=\toks16
+\toctitle=\toks17
+\c@theorem=\count102
+\c@case=\count103
+\c@conjecture=\count104
+\c@corollary=\count105
+\c@definition=\count106
+\c@example=\count107
+\c@exercise=\count108
+\c@lemma=\count109
+\c@note=\count110
+\c@problem=\count111
+\c@property=\count112
+\c@proposition=\count113
+\c@question=\count114
+\c@solution=\count115
+\c@remark=\count116
+\headlineindent=\dimen124
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen125
+\Gin@req@width=\dimen126
+)
+(./samplepaper.aux
+
+LaTeX Warning: Label `ref_article1' multiply defined.
+
+
+LaTeX Warning: Label `ref_article1' multiply defined.
+
+
+LaTeX Warning: Label `ref_article1' multiply defined.
+
+
+LaTeX Warning: Label `ref_article1' multiply defined.
+
+)
+\openout1 = `samplepaper.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+ (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count117
+\scratchdimen=\dimen127
+\scratchbox=\box55
+\nofMPsegments=\count118
+\nofMParguments=\count119
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count120
+\MPscratchDim=\dimen128
+\MPnumerator=\count121
+\makeMPintoPDFobject=\count122
+\everyMPtoPDFconversion=\toks20
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+))))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 35.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 35.
+
+Overfull \hbox (6.8305pt too wide) in paragraph at lines 38--39
+[]\OT1/cmr/m/n/9 Acest doc-u-ment con-tine planul de im-ple-mentare pen-tru pro
+iec-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--53
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--66
+
+ []
+
+[1
+
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<retele_pics/general_diagram.png, id=12, 563.10374pt x 255.95625pt>
+File: retele_pics/general_diagram.png Graphic file (type png)
+<use retele_pics/general_diagram.png>
+Package pdftex.def Info: retele_pics/general_diagram.png  used on input line 98
+.
+(pdftex.def)             Requested size: 563.10237pt x 255.95561pt.
+<retele_pics/server_classes.png, id=14, 282.05376pt x 322.20375pt>
+File: retele_pics/server_classes.png Graphic file (type png)
+<use retele_pics/server_classes.png>
+Package pdftex.def Info: retele_pics/server_classes.png  used on input line 100
+.
+(pdftex.def)             Requested size: 282.05305pt x 322.20296pt.
+<retele_pics/client_classes.png, id=15, 261.97874pt x 292.09125pt>
+File: retele_pics/client_classes.png Graphic file (type png)
+<use retele_pics/client_classes.png>
+Package pdftex.def Info: retele_pics/client_classes.png  used on input line 102
+.
+(pdftex.def)             Requested size: 261.9781pt x 292.09052pt.
+<retele_pics/database_schemas/database_schema.png, id=16, 708.6475pt x 369.38pt
+>
+File: retele_pics/database_schemas/database_schema.png Graphic file (type png)
+<use retele_pics/database_schemas/database_schema.png>
+Package pdftex.def Info: retele_pics/database_schemas/database_schema.png  used
+ on input line 105.
+(pdftex.def)             Requested size: 708.64578pt x 369.37909pt.
+
+Overfull \hbox (16.98834pt too wide) in paragraph at lines 67--106
+\OT1/cmr/m/n/10 - 1 byte lungime parametru1, parametru1, 1 byte lungime paramet
+ru2, parametru2,... 
+ []
+
+
+Overfull \hbox (5.48811pt too wide) in paragraph at lines 67--106
+\OT1/cmr/m/n/10 -acceptFriendRequest(param: user-name): prin aceasta co-manda s
+e ac-cepta cererile
+ []
+
+
+Overfull \hbox (0.18256pt too wide) in paragraph at lines 67--106
+\OT1/cmr/m/n/10 -sendMessage(params:username, mesaj): clien-tul trim-ite mesaju
+l la server, acesta
+ []
+
+
+Overfull \hbox (79.6794pt too wide) in paragraph at lines 67--106
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--106
+
+ []
+
+[2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./retele_pics/general_diagram.png> <./retele_pics/server_classes.png> <./r
+etele_pics/client_classes.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 107--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--121
+
+ []
+
+
+Underfull \vbox (badness 7759) has occurred while \output is active []
+
+ [5 <./retele_pics/database_schemas/database_schema.png>]
+Overfull \hbox (75.4722pt too wide) in paragraph at lines 127--128
+[]\OT1/cmr/m/n/9 https://profs.info.uaic.ro/ com-put-er-net-works/files/NetEx/S
+12/ServerConcThread/servTcpConcTh2.c 
+ []
+
+
+Overfull \hbox (42.01338pt too wide) in paragraph at lines 129--130
+[]\OT1/cmr/m/n/9 https://profs.info.uaic.ro/ com-put-er-net-works/files/NetEx/S
+12/ServerConcThread/cliTcpNr.c 
+ []
+
+[6] (./samplepaper.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 1863 strings out of 492616
+ 26348 string characters out of 6129481
+ 103471 words of memory out of 5000000
+ 5780 multiletter control sequences out of 15000+600000
+ 6100 words of font info for 23 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,5n,25p,1049b,169s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on samplepaper.pdf (6 pages, 196888 bytes).
+PDF statistics:
+ 60 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+

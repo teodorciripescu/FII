@@ -1,0 +1,20 @@
+fifo sunt un tip special
+un canal care lucreaza printr un fisier de pe disc
+datele nu sunt salvate acolo
+acesta se foloseste doar la accesare
+este doar o referinta
+pt un program sa l foloseasca: path, denumire, drepturi de acces
+descriptori
+cap de citire, de scriere
+ex: un proces read only, unul write only
+
+nu trebuie uitat exit in copil pt a ii delimita rularea
+dup -  are un sg parametru, duplica un descriptor
+close(1) inchide standard output
+dupa la dup(pfd[1]) aloca la standard output
+close(0) inchide standard input
+
+EX:
+1.afisati pe ecran capacitatea maxima a unui pipe si a unui fifo(de obicei e cam ac valoare)
+2. -2 procese sa comunice bidirectional pe ac canal; A ii scrie ceva lui B, B ii raspunde;
+-3 procese sa comunice pe acelasi canal

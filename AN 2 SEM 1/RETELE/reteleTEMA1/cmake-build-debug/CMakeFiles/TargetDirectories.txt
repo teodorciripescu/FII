@@ -1,0 +1,3 @@
+/Users/teodorciripescu/CLionProjects/reteleTEMA1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/teodorciripescu/CLionProjects/reteleTEMA1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/teodorciripescu/CLionProjects/reteleTEMA1/cmake-build-debug/CMakeFiles/reteleTEMA1.dir

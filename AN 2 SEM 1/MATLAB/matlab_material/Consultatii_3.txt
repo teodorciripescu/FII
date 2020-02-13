@@ -1,0 +1,7 @@
+sym()
+syms a b c d 
+solve(eqn)-->rez. ec algebrice
+dsolve(eqn, cond)-->rez. ec. sau sist. de ec. diferentiale
+eqn=[..., ...,]   "... == ..."
+simplify
+pretty
